@@ -1,0 +1,29 @@
+name: Java CI with Maven
+
+# Quando o workflow será acionado
+on:
+  push:
+    branches:
+      - main  # Aciona o workflow quando houver push na branch main
+  pull_request:
+    branches:
+      - main  # Aciona o workflow quando houver pull request para a branch main
+  workflow_dispatch:  # Permite rodar manualmente da aba Actions no GitHub
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Usa o ambiente mais recente do Ubuntu para rodar
+
+    steps:
+      - name: Checar o código do repositório
+        uses: actions/checkout@v2  # Faz o checkout do código do repositório
+
+      - name: Configurar JDK 11
+        uses: actions/setup-java@v2  # Instala o JDK 11 no ambiente
+        with:
+          java-version: '11'
+
+      - name: Build e testar com Maven
+        run: |
+          mvn clean install  # Comando Maven para compilar o código e instalar dependências
+          mvn test  # Comando Maven para rodar os testes
