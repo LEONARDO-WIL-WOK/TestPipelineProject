@@ -22,7 +22,7 @@ jobs:
           java-version: '11'
           java-package: jdk
           architecture: x64
-          distribution: 'adoptium'  # Alterado para 'adoptium'
+          distribution: 'temurin'  # Corrigido para 'temurin'
 
       - name: Build e testar com Maven
         run: |
